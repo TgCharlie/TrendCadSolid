@@ -6,8 +6,10 @@
   if (!button || !status) return;
 
   const repository = document.documentElement.dataset.githubRepo || 'TgCharlie/TrendCadSolid';
-  const fallbackVersion = document.documentElement.dataset.appVersion || '0.2.0';
+  const fallbackVersion = document.documentElement.dataset.appVersion || '0.2.1';
   let releaseUrl = '';
+  const versionLabel = document.getElementById('app-version');
+  if (versionLabel) versionLabel.textContent = `v${fallbackVersion}`;
 
   const currentVersion = () => window.trendcadApp?.version || fallbackVersion;
   const setStatus = (text, state = '') => { status.textContent = text; status.dataset.state = state; };
@@ -61,5 +63,5 @@
   }
 
   button.addEventListener('click', () => releaseUrl ? openRelease(releaseUrl) : checkForUpdates());
-  if (window.trendcadApp?.getInfo) window.trendcadApp.getInfo().then(info => { if (info?.version) document.getElementById('app-version').textContent = `v${info.version}`; }).catch(() => {});
+  if (window.trendcadApp?.getInfo) window.trendcadApp.getInfo().then(info => { if (info?.version && versionLabel) versionLabel.textContent = `v${info.version}`; }).catch(() => {});
 })();
