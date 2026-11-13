@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+pnpm-workspace.yaml
+release/
+dist/
+out/
+.DS_Store
+*.log
+npm-debug.log*
+.env
+test-results.txt
